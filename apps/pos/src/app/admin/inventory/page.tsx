@@ -249,7 +249,7 @@ export default function InventoryLedger() {
         open={isEditModalOpen}
         onCancel={() => setIsEditModalOpen(false)}
         footer={null}
-        destroyOnClose
+        destroyOnHidden
       >
         <Form
           form={editForm}
@@ -302,7 +302,7 @@ export default function InventoryLedger() {
         open={isRestockModalOpen}
         onCancel={() => setIsRestockModalOpen(false)}
         footer={null}
-        destroyOnClose
+        destroyOnHidden
         width={400}
       >
         <div className="mb-6 mt-2 rounded-md bg-gray-50 p-3 text-sm text-gray-600">
