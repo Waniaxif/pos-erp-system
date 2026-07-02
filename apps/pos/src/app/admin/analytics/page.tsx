@@ -174,7 +174,7 @@ export default function AnalyticsDashboard() {
                       tick={{ fill: "#6B7280" }}
                       tickFormatter={(val) => `Rs.${val}`}
                     />
-                    <RechartsTooltip
+                    {/* <RechartsTooltip
                       formatter={(
                         value: string | number | (string | number)[],
                       ) => {
@@ -187,7 +187,7 @@ export default function AnalyticsDashboard() {
                         border: "none",
                         boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                       }}
-                    />
+                    /> */}
                     <Line
                       type="monotone"
                       dataKey="revenue"
