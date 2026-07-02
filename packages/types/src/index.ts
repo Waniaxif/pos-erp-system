@@ -12,8 +12,8 @@ export interface Product {
   stockQuantity: number;
   sku: string;
   category: string; // References Category _id
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: string; // Changed from Date to string
+  updatedAt?: string; // Changed from Date to string
 }
 
 export interface CartItem extends Product {
@@ -29,5 +29,5 @@ export interface Order {
   total: number;
   status: "COMPLETED" | "REFUNDED" | "PENDING";
   paymentMethod: "CASH" | "CARD";
-  timestamp: Date;
+  timestamp: string; // Changed from Date to string
 }

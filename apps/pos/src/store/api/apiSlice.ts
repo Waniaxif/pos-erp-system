@@ -43,14 +43,14 @@ export interface SystemUser {
   role: UserRole;
 }
 
-// Kept this explicit interface to ensure _id and stockQuantity are properly typed
+// Fixed: Changed category from 'unknown' to 'string' to resolve the cart dispatch type mismatch
 export interface Product {
   _id: string;
   name: string;
   sku: string;
   price: number;
   stockQuantity: number;
-  category?: unknown;
+  category: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -62,7 +62,10 @@ interface ApiResponse<T> {
 
 export const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://127.0.0.1:5000/api" }),
+  // Fixed: Added support for production Vercel environment variables
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5000/api",
+  }),
   tagTypes: ["Product", "Category", "Order", "User"],
   endpoints: (builder) => ({
     // --- Queries (GET) ---
@@ -139,11 +142,10 @@ export const apiSlice = createApi({
       Partial<Product> & { _id: string }
     >({
       query: ({ _id, ...patch }) => ({
-        url: `/products/${_id}`, // <-- Changed to match the backend /:id route
+        url: `/products/${_id}`,
         method: "PATCH",
         body: patch,
       }),
-      // Safely handle the response whether the backend wraps it in { data: ... } or returns it directly
       transformResponse: (response: ApiResponse<Product> | Product) => {
         return "data" in response ? response.data : response;
       },
