@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "POS System",
   description: "Web-based Point of Sale System",
-  manifest: "/manifest.json", // Setup for your PWA later
+  // manifest: "/manifest.json", // Setup for your PWA later
 };
 
 export default function RootLayout({
