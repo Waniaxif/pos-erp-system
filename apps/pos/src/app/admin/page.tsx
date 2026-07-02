@@ -86,103 +86,127 @@ export default function AdminPage() {
           </Link>
         </div>
 
-        <Tabs defaultActiveKey="1">
-          {/* CATEGORY TAB */}
-          <Tabs.TabPane tab="Manage Categories" key="1">
-            <div className="max-w-md pt-4">
-              <h2 className="mb-4 text-lg font-semibold">Add New Category</h2>
-              <Form
-                form={categoryForm}
-                layout="vertical"
-                onFinish={handleCreateCategory}
-              >
-                <Form.Item
-                  name="name"
-                  label="Category Name"
-                  rules={[{ required: true }]}
-                >
-                  <Input placeholder="e.g., Beverages, Snacks, Electronics" />
-                </Form.Item>
-                <Form.Item name="description" label="Description">
-                  <Input.TextArea rows={3} placeholder="Optional details..." />
-                </Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={isCreatingCat}
-                  className="bg-blue-600"
-                >
-                  Create Category
-                </Button>
-              </Form>
-            </div>
-          </Tabs.TabPane>
+        <Tabs
+          defaultActiveKey="1"
+          items={[
+            {
+              key: "1",
+              label: "Manage Categories",
+              children: (
+                <div className="max-w-md pt-4">
+                  <h2 className="mb-4 text-lg font-semibold">
+                    Add New Category
+                  </h2>
 
-          {/* PRODUCT TAB */}
-          <Tabs.TabPane tab="Manage Products" key="2">
-            <div className="max-w-md pt-4">
-              <h2 className="mb-4 text-lg font-semibold">Add New Product</h2>
-              <Form
-                form={productForm}
-                layout="vertical"
-                onFinish={handleCreateProduct}
-              >
-                <Form.Item
-                  name="name"
-                  label="Product Name"
-                  rules={[{ required: true }]}
-                >
-                  <Input placeholder="e.g., Wireless Earbuds" />
-                </Form.Item>
-                <Form.Item
-                  name="sku"
-                  label="SKU (Barcode/ID)"
-                  rules={[{ required: true }]}
-                >
-                  <Input placeholder="e.g., WE-1001" />
-                </Form.Item>
-                <Form.Item
-                  name="category"
-                  label="Category"
-                  rules={[{ required: true }]}
-                >
-                  <Select
-                    placeholder="Select a category"
-                    options={categoryOptions}
-                    loading={isCategoriesLoading}
-                    disabled={categoryOptions.length === 0}
-                  />
-                </Form.Item>
-                <div className="flex gap-4">
-                  <Form.Item
-                    name="price"
-                    label="Price (Rs.)"
-                    rules={[{ required: true }]}
-                    className="w-1/2"
+                  <Form
+                    form={categoryForm}
+                    layout="vertical"
+                    onFinish={handleCreateCategory}
                   >
-                    <InputNumber min={0} className="w-full" />
-                  </Form.Item>
-                  <Form.Item
-                    name="stockQuantity"
-                    label="Initial Stock"
-                    rules={[{ required: true }]}
-                    className="w-1/2"
-                  >
-                    <InputNumber min={0} className="w-full" />
-                  </Form.Item>
+                    <Form.Item
+                      name="name"
+                      label="Category Name"
+                      rules={[{ required: true }]}
+                    >
+                      <Input placeholder="e.g., Beverages, Snacks, Electronics" />
+                    </Form.Item>
+
+                    <Form.Item name="description" label="Description">
+                      <Input.TextArea
+                        rows={3}
+                        placeholder="Optional details..."
+                      />
+                    </Form.Item>
+
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={isCreatingCat}
+                      className="bg-blue-600"
+                    >
+                      Create Category
+                    </Button>
+                  </Form>
                 </div>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={isCreatingProd}
-                  className="bg-blue-600"
-                >
-                  Add Product
-                </Button>
-              </Form>
-            </div>
-          </Tabs.TabPane>
-        </Tabs>
+              ),
+            },
+            {
+              key: "2",
+              label: "Manage Products",
+              children: (
+                <div className="max-w-md pt-4">
+                  <h2 className="mb-4 text-lg font-semibold">
+                    Add New Product
+                  </h2>
+
+                  <Form
+                    form={productForm}
+                    layout="vertical"
+                    onFinish={handleCreateProduct}
+                  >
+                    <Form.Item
+                      name="name"
+                      label="Product Name"
+                      rules={[{ required: true }]}
+                    >
+                      <Input placeholder="e.g., Wireless Earbuds" />
+                    </Form.Item>
+
+                    <Form.Item
+                      name="sku"
+                      label="SKU (Barcode/ID)"
+                      rules={[{ required: true }]}
+                    >
+                      <Input placeholder="e.g., WE-1001" />
+                    </Form.Item>
+
+                    <Form.Item
+                      name="category"
+                      label="Category"
+                      rules={[{ required: true }]}
+                    >
+                      <Select
+                        placeholder="Select a category"
+                        options={categoryOptions}
+                        loading={isCategoriesLoading}
+                        disabled={categoryOptions.length === 0}
+                      />
+                    </Form.Item>
+
+                    <div className="flex gap-4">
+                      <Form.Item
+                        name="price"
+                        label="Price (Rs.)"
+                        rules={[{ required: true }]}
+                        className="w-1/2"
+                      >
+                        <InputNumber min={0} className="w-full" />
+                      </Form.Item>
+
+                      <Form.Item
+                        name="stockQuantity"
+                        label="Initial Stock"
+                        rules={[{ required: true }]}
+                        className="w-1/2"
+                      >
+                        <InputNumber min={0} className="w-full" />
+                      </Form.Item>
+                    </div>
+
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={isCreatingProd}
+                      className="bg-blue-600"
+                    >
+                      Add Product
+                    </Button>
+                  </Form>
+                </div>
+              ),
+            },
+          ]}
+        />
       </div>
     </main>
   );
