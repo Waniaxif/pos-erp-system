@@ -43,6 +43,10 @@ export default function LoginPage() {
           <Text className="text-gray-500">
             Sign in with your email or phone number
           </Text>
+          <br />
+          <Text className="opacity-50 font-bold text-gray-200">
+            (Use admin@pos.com and password123 for testing)
+          </Text>
         </div>
 
         <Form form={form} layout="vertical" onFinish={handleLogin} size="large">
